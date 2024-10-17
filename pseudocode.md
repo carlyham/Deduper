@@ -4,7 +4,10 @@ In many cases, amplifying RNA with PCR is necessary to create enough molecules f
 
 A marker called a Unique Molecular Index (UMI) can be helpful in determining which strand each PCR read comes from. A different UMI can be applied to each molecule and when deduplication is done, reads with the same chromosome, position, strand information, and UMI will be considered duplicates.   
 
-def process_sam_file(file_path: str) -> None:
+
+Pseudocode Strategy:
+```
+def process_sam_file(file_path: str):
     known_umis = load_known_umis()  # Assume we have a list of known UMIs
     seen_reads = set()
     
@@ -35,5 +38,6 @@ def is_valid_umi(umi: str, known_umis: list) -> bool:
 def generate_read_hash(chrom: str, pos: int, umi: str, cigar: str) -> str:
     return f'{chrom}_{pos}_{umi}_{cigar}'
 
-def write_read_to_output(read: str, output_file) -> None:
+def write_read_to_output(read: str, output_file):
     output_file.write(read)
+```

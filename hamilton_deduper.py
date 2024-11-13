@@ -91,6 +91,7 @@ with open(sam_file, "r") as infile:
     with open(output_file, "w") as outfile:
         current_dupes = {}
         chr_count = 0
+        uniq_count = 0
 
         for line in infile:
             line = line.strip()
@@ -124,6 +125,9 @@ with open(sam_file, "r") as infile:
                 if read_ID not in current_dupes:
                     current_dupes[read_ID] = line
                     outfile.write(f"{line}\n")
+                    uniq_count += 1
+    
+        print(f"Unique Reads = {uniq_count}")
 
 
 
